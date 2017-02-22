@@ -34,3 +34,18 @@ coverage
 
 # nyc test coverage
 .nyc_output
+*.less
+
+*.map
+
+node_modules/xtend/LICENCE
+
+app/bower_components/*
+
+app/components/*
+
+bower_components/*
+
+node_modules/*
+
+e2e-tests/*
