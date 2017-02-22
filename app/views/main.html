@@ -1,11 +1,11 @@
 <section class="container-fluid content">
 
-    <div class="row" ng-repeat="dado in dados | filter: getResult ">
+    <div class="row">
        <!--visao geral-->
         <article class="col-lg-12 col-sm-12 col-xs-12">
 
             <h2>
-            Bem vindo, {{dado.titular}}.
+            Bem vindo, {{$root.selecionado.titular}}.
             </h2>
 
             <div class="row">
@@ -16,31 +16,155 @@
                         </div>
                         <div class="panel-body">
                             <ul class="list-striped">
-                                <li>Saldo conta corrente <span class="pull-right {{dado.saldo > 0 ? 'text-success' : 'text-danger'}}">R$ {{dado.saldo}}</span></li>
-                                <li>Limite conta corrente <span class="pull-right {{dado.limite > 0 ? 'text-success' : 'text-danger'}}" >R$ {{dado.limite}}</span></li>
-                                <li>Saldo conta poupança <span class="pull-right {{dado.poupan > 0 ? 'text-success' : 'text-danger'}}">R$ {{dado.poupan}}</span></li>
-                                <li>Saldo total <span class="pull-right {{dado.saldo + dado.limite + dado.poupan > 0 ? 'text-success' : 'text-danger'}}">R$ {{dado.saldo + dado.limite + dado.poupan}}</span></li>
+                                <li>Saldo conta corrente <span class="pull-right {{$root.selecionado.saldo > 0 ? 'text-success' : 'text-danger'}}">{{$root.selecionado.saldo | currency:'R$' }}</span></li>
+                                <li>Limite conta corrente <span class="pull-right {{$root.selecionado.limite > 0 ? 'text-success' : 'text-danger'}}" >{{$root.selecionado.limite | currency:'R$' }}</span></li>
+                                <li>Saldo conta poupança <span class="pull-right {{$root.selecionado.poupan > 0 ? 'text-success' : 'text-danger'}}">{{$root.selecionado.poupan | currency:'R$' }}</span></li>
+                                <li>Saldo total <span class="pull-right {{$root.selecionado.saldo + $root.selecionado.limite + $root.selecionado.poupan > 0 ? 'text-success' : 'text-danger'}}">{{$root.selecionado.saldo + $root.selecionado.limite + $root.selecionado.poupan | currency:'R$' }}</span></li>
                             </ul>
                         </div>
                         <div class="panel-footer text-right">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-info btn-raised" >
-                                    Transferência
-                                </button>
+                                <a href="#/transf">
+	                                <button type="button" class="btn btn-info btn-raised">
+	                                    Transferência
+	                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
-
                 </div>
-
-                
-
+            </div>
         </article>
     </div>
 </section>
 
 <section class="container-fluid">
     <div class="row">
-        <ng-include src="layout[1].path"></ng-include>
+        <ng-include src="$root.layout[1].path"></ng-include>
     </div>
 </section>
+
+<!--section>
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h2>Transferência</h2>
+				</div>
+				<div class="modal-body" ng-repeat="dado in dados | filter: getResult">
+					<div class="row hide" data-step="1" data-title="This is the first step!">
+			        	<div class="jumbotron">
+							<form id="transForm">
+						        <div class="col-md-12">
+						            <div class="panel panel-primary">
+						                <div class="panel-heading col-md-12" ng-init="userAcc.tipo = 'corrente'">
+						                    <h3 class="panel-title pull-right col-md-5" 
+						                    ng-show="userAcc.tipo=='corrente'">Saldo: {{dado.saldo + dado.limite | currency:'R$' }}</h3>
+						                    <h3 class="panel-title pull-right col-md-5" 
+						                    ng-show="userAcc.tipo=='poupan'">Saldo: {{dado.poupan | currency:'R$' }}</h3>
+						                    <h3 class="panel-title col-md-5">Selecionar contas</h3>
+						                </div>
+						                <div class="panel-body">
+						                    <div class="col-md-6">
+						                        <label class="text-info" for="userAcc">Conta origem:</label>
+						                        <select class="form-control" name="userAcc" ng-model="userAcc" id="userAcc"
+						                        ng-options="x.nome for x in tiposConta" ng-init="userAcc = tiposConta[0]">
+												</select>
+						                    </div>
+						                    <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12">
+						                        <label class="text-info" for="destAcc">Conta destino:</label>
+						                        <select class="form-control" name="destAcc" ng-model="destAcc" id="destAcc"
+						                        ng-options="x.nome for x in tiposConta" ng-init="destAcc = tiposConta[0]">
+												</select>
+						                    </div>
+						                </div>
+						            </div>
+						        </div>
+
+						        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+						            <div class="panel panel-primary">
+						                <div class="panel-heading">
+						                    <h3 class="panel-title">Favorecido:</h3>
+						                </div>
+						                <div class="panel-body">
+						                    <div class="col-md-12">
+
+						                        <select name="destUser" ng-model="destUser" ng-options="x.titular for x in dados | filter: agenciaDestino | filter: contaDestino " id="destUser" class="form-control" ng-init="destUser = dados[0]" ng-change="hasChanged();">
+						                        <option value="">- Selecione um Favorecido -</option></select>
+						                    </div>
+
+						                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+						                        <label class="text-info" for="agenciaDestino">Agência:</label>
+						                        <input type="text" class="form-control" ng-model="agenciaDestino" name="agenciaDestino" id="agenciaDestino" placeholder="{{destUser.agencia}}">
+						                    </div>
+						                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+						                        <label class="text-info" for="contaDestino">Conta:</label>
+						                        <input type="text" class="form-control" ng-model="contaDestino" name="contaDestino" id="contaDestino" placeholder="{{destUser.conta}}">
+						                    </div>
+						                </div>
+						            </div>
+						        </div>
+
+						        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12" ng-show="favorecido != '' || agenciaDestino != '' && destAccino != ''">
+						            <div class="panel panel-primary">
+						                <div class="panel-heading">
+						                    <h3 class="panel-title">Realizar transferência</h3>
+						                </div>
+						                <div class="panel-body">
+						                    <div class="form-group">
+						                        <p class="h3">Valor para transferência:</p>
+						                        <div class="input-group">
+						                            <input type="text" id="transValue" name="transValue" class="form-control" ng-model="transValue" ui-money-mask>
+						                        </div>
+						                    </div>
+											
+											<button type="button" class="btn btn-success js-btn-step" data-orientation="next" ng-click="teste(dado, transValue);">Transferir</button>
+						                </div>
+						            </div>
+						        </div>
+						    </form>
+			        	</div>
+			        </div>
+			        <div class="row hide" data-step="2" data-title="This is the second step!">
+			          	<div class="jumbotron">
+				          	<section class="container-fluid content">
+							    <div class="row">
+							        <div class="col-lg-6 col-md-6 col-sm-10 col-xs-12 col-lg-offset-3 col-md-offset-3 col-sm-offset-1">
+							         	<p>Confirmar Transação?</p>
+							         	<p>Saldo Atual: {{dado.saldo}}</p>
+							         	<p>Limite Atual: {{dado.limite}}</p>
+							         	<p>Saldo Disponível: {{dado.saldo + dado.limite}}</p>
+							         	<p>Saldo Disponível após transação: {{dado.saldo + dado.limite - transValue}}</p>
+							        </div>
+							    </div>
+							</section>
+			          	</div>
+			        </div>
+
+			        <div class="row hide" data-step="3">
+			          	<div class="jumbotron">
+				          	<section class="container-fluid content">
+							    <div class="row">
+							        <div class="col-lg-6 col-md-6 col-sm-10 col-xs-12 col-lg-offset-3 col-md-offset-3 col-sm-offset-1">
+							            <p ng-if="transValue > (dado.saldo + dado.limite)"
+							            class="text-center"><span class="glyphicon glyphicon-remove-circle error"></span> Transferência recusada, procure seu gerente!</p>
+							            <p ng-if="transValue <= (dado.saldo + dado.limite)"
+							            class="text-center"><span class="glyphicon glyphicon-remove-circle error"></span> Transferência recusada, procure seu gerente!</p>
+							        </div>
+							    </div>
+							</section>
+			          	</div>
+			        </div>
+
+
+					
+				</div>
+				<div class="modal-footer">
+                	<button type="button" class="btn btn-default js-btn-step pull-left" data-orientation="cancel" data-dismiss="modal"></button>
+        			<button type="button" class="btn btn-warning js-btn-step" data-orientation="previous"></button>
+				</div>
+			</div>
+		</div>
+	</div>
+</section-->

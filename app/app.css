@@ -1,4 +1,9 @@
-/* app css stylesheet */
+/*custom font*/
+@import url(http://fonts.googleapis.com/css?family=Montserrat);
+
+body {
+  font-family: montserrat, arial, verdana;
+}
 
 .menu {
   list-style: none;
@@ -39,6 +44,8 @@ body {
   background: url("https://www.toptal.com/designers/subtlepatterns/patterns/concrete_seamless.png") repeat fixed;
   font-family: 'Open Sans', sans-serif;
   font-weight: 200;
+  position: absolute;
+  z-index: -2;
 }
 .login {
   position: relative;
@@ -66,7 +73,7 @@ body {
   background-position: 152px -16px;
   opacity: 0.06;
   top: 0;
-  left: 0;
+  left: 100px;
   bottom: 0;
   right: 0;
   position: absolute;
@@ -98,7 +105,7 @@ body {
   outline: 0;
   border-color: #FF7052;
 }
-.submit {
+.submit-login {
   width: 45px;
   height: 45px;
   display: block;
@@ -111,9 +118,9 @@ body {
   cursor: pointer;
   box-shadow: 0px 0px 0px 7px #fff;
   transition: 0.2s ease-out;
-}
-.submit:hover,
-.submit:focus {
+} 
+.submit-login:hover,
+.submit-login:focus {
   background: #5A98CD;
   color: #fff;
   outline: 0;
@@ -161,3 +168,135 @@ body {
 #header h2{
 	font-weight:normal;
 }
+
+
+
+/*form styles*/
+#msform {
+  width: 400px;
+  margin: 50px auto;
+  text-align: center;
+  position: relative;
+}
+#msform fieldset {
+  background: white;
+  border: 0 none;
+  border-radius: 3px;
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+  padding: 20px 30px;
+  box-sizing: border-box;
+  width: 80%;
+  margin: 0 10%;
+  
+  /*stacking fieldsets above each other*/
+  position: relative;
+}
+/*Hide all except first fieldset*/
+#msform fieldset:not(:first-of-type) {
+  display: none;
+}
+/*inputs*/
+#msform input, #msform textarea {
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: montserrat;
+  color: #2C3E50;
+  font-size: 13px;
+}
+/*buttons*/
+#msform .action-button {
+  width: 100px;
+  background: #27AE60;
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 1px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px;
+}
+#msform .action-button:hover, #msform .action-button:focus {
+  box-shadow: 0 0 0 2px white, 0 0 0 3px #5A98CD;
+}
+/*headings*/
+.fs-title {
+  font-size: 15px;
+  text-transform: uppercase;
+  color: #2C3E50;
+  margin-bottom: 10px;
+}
+.fs-subtitle {
+  font-weight: normal;
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 20px;
+}
+/*progressbar*/
+#progressbar {
+  margin-bottom: 30px;
+  overflow: hidden;
+  /*CSS counters to number the steps*/
+  counter-reset: step;
+}
+#progressbar li {
+  list-style-type: none;
+  color: #5A98CD;
+  text-transform: uppercase;
+  font-size: 10px;
+  width: 33.33%;
+  float: left;
+  position: relative;
+}
+#progressbar li:before {
+  content: counter(step);
+  counter-increment: step;
+  width: 20px;
+  line-height: 20px;
+  display: block;
+  font-size: 10px;
+  color: #333;
+  background: white;
+  border-radius: 3px;
+  margin: 0 auto 5px auto;
+}
+/*progressbar connectors*/
+#progressbar li:after {
+  content: '';
+  width: 100%;
+  height: 2px;
+  background: white;
+  position: absolute;
+  left: -50%;
+  top: 9px;
+  z-index: -1; /*put it behind the numbers*/
+}
+#progressbar li:first-child:after {
+  /*connector not needed before the first step*/
+  content: none; 
+}
+/*marking active/completed steps green*/
+/*The number of the step and the connector before it = green*/
+#progressbar li.active:before,  #progressbar li.active:after{
+  background: #5A98CD;
+  color: white;
+}
+
+/*footer class*/
+.footer-dev {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 0.5rem;
+  background-color: white;
+  text-align: center;
+  font-size: 10px;
+}
+
+
+
+
