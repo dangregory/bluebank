@@ -1,3 +1,63 @@
+# `angular-seed` — the seed for AngularJS apps
+
+## Começando
+
+Para começar você só tem que clonar o repositório e instalar suas dependências:
+
+### Pre-requisitos
+
+`Git` para clonar o repositório;
+`Node.js` devido às ferramentas para inicializar e testar o projeto.
+É necessário também o gerenciador de pacotes `npm`.
+
+### Clonar 
+
+Clone o repositório usando git:
+
+```
+git clone https://github.com/dangregory/bluebank.git
+cd bluebank
+```
+
+
+### Instalar as Dependências
+
+Para instalar as dependências, o `npm` foi pré-configurado para rodar o bower automaticamente, dessa forma basta executar:
+
+```
+npm install
+```
+
+Esse comando chamará também o `bower install`. A pasta `bower_components` que normalmente fica no root do projeto, é criada na pasta `app` para facilitar o "serve" pelo webserver.
+
+
+### Rodar a Aplicação
+
+Esse projeto já está pré-configurado com um webserver de desenvolvimento local. É uma ferramenta Noje.js chamada [http-server][http-server]. Você pode rodar o projeto com esse webserver rodando um:
+
+
+```
+npm start
+```
+
+Agora basta ir para [`localhost:8000/index.html`][local-app-url].
+
+
+### Instruções para Login
+
+Foi criada uma api através do [Apiary][apiary] para ser consumida pelo frontend. Dessa forma, para logar no sistema, é feita uma autenticação através do `id` do usuário. Portanto, é necessário utilizar um dos seguintes `id's`:
+
+```
+Nome: João, ID: 123456
+Nome: Maria, ID: 123457
+Nome: José, ID: 123458
+Nome: Watson, ID: 123459
+Nome: Ana, ID: 123450
+```
+Como a autenticação checa somente o `id`, os outros campos não foram marcados como `required`.   
+
+
+
 # Blue Bank - Estamos contratando!
 
 
@@ -35,3 +95,8 @@ Angular, jQuery, Bootstrap, Material, ModuleJs, Sequelize, Spring, Hibernate.
 ## Como enviar o código para análise?
 O desenvolvedor deve criar um projeto no seu Git repo preferido (GitHub, BitBucket, etc). Lembre-se que ele será analisado por desenvolvedores, então não economize nos comentários de commit.
 
+
+
+[apiary]: https://apiary.io/
+[local-app-url]: http://localhost:8000/index.html
+[http-server]: https://github.com/indexzero/http-server
