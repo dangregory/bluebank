@@ -73,29 +73,34 @@ app.controller('MainCtrl', function($rootScope, $location, $scope, $http, users)
 	});
    $rootScope.dados = dados.dado;
 
-   $scope.checaSelecionado = function() {
 
-   console.log("checa selecionado");
+   $scope.checaSelecionado = function() {
 	   	for (var i = 0; i < $rootScope.dados.length; i++) {
-		   console.log($rootScope.loginID);
-		   console.log($rootScope.dados[i].id)
 	        if ($rootScope.dados[i].id == $rootScope.loginID){
-	            $rootScope.selecionado = $rootScope.dados[i]; // Return as soon as the object is found
-	            console.log("selecionado");
+	            $rootScope.selecionado = $rootScope.dados[i]; 
+	            $scope.getExtrato($rootScope.selecionado.id);
 	        }
 	    }
 	}
 
+	$scope.getExtrato = function(id){
+   		var extrato = [];
+
+		$http({
+	        method: 'GET',
+			url: 'https://fake-restful.herokuapp.com/users/' + id + '/extratos'
+		}).then(function successCallback(response) {
+				for (var i = 0; i < response.data.length; i++) {
+				    extrato.push(response.data[i]);
+				}
+			}, function errorCallback(response) {
+		});
+		$scope.extrato = extrato;
+	};
+
     $scope.hasChanged = function() {
 		$("#agenciaDestino").val("");
 		$("#contaDestino").val("");
-	};
-
-	$scope.teste = function(dado, transValue){
-		if(transValue > dado.saldo){
-			$scope.erro = true;
-		};
-		console.log(dado);
 	};
 
 	$scope.newTransfer = function(){
@@ -107,7 +112,8 @@ app.controller('TransfCtrl', function($rootScope, $location, $scope, $http, acco
    	$rootScope.activetab = $location.path();
 
    	$rootScope.contas = accounts.contas;
-   	console.log($rootScope.contas);
+   	$rootScope.userAcc = $rootScope.contas[0];
+   	$rootScope.destAcc = $rootScope.contas[0];
     	
 	var current_fs, next_fs, previous_fs; //fieldsets
 	var left, opacity, scale; //fieldset properties which we will animate
@@ -268,7 +274,7 @@ app.controller('TransfCtrl', function($rootScope, $location, $scope, $http, acco
 			//Operações na conta do usuário
 			if(operacao == "saldo"){
 				$http({
-				  	url: 'http://fake-restful.herokuapp.com/users/' + user.id,
+				  	url: 'https://fake-restful.herokuapp.com/users/' + user.id,
 				  	method: 'PATCH',
 				  	headers: {
 		    			'Content-Type': 'application/json'
@@ -279,15 +285,16 @@ app.controller('TransfCtrl', function($rootScope, $location, $scope, $http, acco
 				  		
 				}).success(function(response) {
 				      	$("#alert").removeClass("hidden");
+				      	$scope.updateExtrato(dest, user, valor, contaUser, contaDest, "Débito", operacao);
 				  	}).
 				  error(function(response) {
 				  console.log(response);
 				  return false;
-				});
+				});	
 			}
 			else if(operacao == "limite"){
 				$http({
-				  	url: 'http://fake-restful.herokuapp.com/users/' + user.id,
+				  	url: 'https://fake-restful.herokuapp.com/users/' + user.id,
 				  	method: 'PATCH',
 				  	headers: {
 		    			'Content-Type': 'application/json'
@@ -299,6 +306,7 @@ app.controller('TransfCtrl', function($rootScope, $location, $scope, $http, acco
 				  		
 				}).success(function(response) {
 				      	$("#alert").removeClass("hidden");
+				      	$scope.updateExtrato(dest, user, valor, contaUser, contaDest, "Débito", operacao);
 				  	}).
 				  error(function(response) {
 				  console.log(response);
@@ -307,7 +315,7 @@ app.controller('TransfCtrl', function($rootScope, $location, $scope, $http, acco
 			}
 			else if(operacao == "poupan"){
 				$http({
-				  	url: 'http://fake-restful.herokuapp.com/users/' + user.id,
+				  	url: 'https://fake-restful.herokuapp.com/users/' + user.id,
 				  	method: 'PATCH',
 				  	headers: {
 		    			'Content-Type': 'application/json'
@@ -318,6 +326,7 @@ app.controller('TransfCtrl', function($rootScope, $location, $scope, $http, acco
 				  		
 				}).success(function(response) {
 				      	$("#alert").removeClass("hidden");
+				      	$scope.updateExtrato(dest, user, valor, contaUser, contaDest, "Débito", operacao);
 				  	}).
 				  error(function(response) {
 				  console.log(response);
@@ -329,7 +338,7 @@ app.controller('TransfCtrl', function($rootScope, $location, $scope, $http, acco
 			//Operações na conta do favorecido
 			if (contaDest.tipo == "corrente") {
 				$http({
-				  	url: 'http://fake-restful.herokuapp.com/users/' + dest.id,
+				  	url: 'https://fake-restful.herokuapp.com/users/' + dest.id,
 				  	method: 'PATCH',
 				  	headers: {
 		    			'Content-Type': 'application/json'
@@ -340,6 +349,7 @@ app.controller('TransfCtrl', function($rootScope, $location, $scope, $http, acco
 				  		
 				}).success(function(response) {
 				      	$("#alert").removeClass("hidden");
+				      	$scope.updateExtrato(user, dest, valor, contaUser, contaDest, "Crédito", operacao);
 				  	}).
 				  error(function(response) {
 				  console.log(response);
@@ -348,7 +358,7 @@ app.controller('TransfCtrl', function($rootScope, $location, $scope, $http, acco
 			} 
 			else if(contaDest.tipo == "poupan"){
 				$http({
-				  	url: 'http://fake-restful.herokuapp.com/users/' + dest.id,
+				  	url: 'https://fake-restful.herokuapp.com/users/' + dest.id,
 				  	method: 'PATCH',
 				  	headers: {
 		    			'Content-Type': 'application/json'
@@ -359,6 +369,7 @@ app.controller('TransfCtrl', function($rootScope, $location, $scope, $http, acco
 				  		
 				}).success(function(response) {
 				      	$("#alert").removeClass("hidden");
+				      	$scope.updateExtrato(user, dest, valor, contaUser, contaDest, "Crédito", operacao);
 				  	}).
 				  error(function(response) {
 				  console.log(response);
@@ -366,6 +377,32 @@ app.controller('TransfCtrl', function($rootScope, $location, $scope, $http, acco
 				});
 			}			
 		}
+	}
+
+	$scope.updateExtrato = function(user, dest, valor, contaUser, contaDest, tipo, operacao){
+		$http({
+		  	url: 'https://fake-restful.herokuapp.com/users/' + user.id +'/extratos',
+		  	method: 'POST',
+		  	headers: {
+    			'Content-Type': 'application/json'
+    		},
+		  	data: {
+
+	  			usuario: dest.titular,
+                origem: contaUser.nome,
+                destino: contaDest.nome,
+                tipo: tipo,
+                valor: valor,
+                userId: user.id
+		  		
+		  	}
+		  		
+		}).success(function(response) {
+		  	}).
+		  error(function(response) {
+		  console.log(response);
+		  return false;
+		});
 	}
 
 

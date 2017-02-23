@@ -22,10 +22,10 @@
 	  <fieldset>
 	    <h2 class="fs-title">Informe os tipos de conta</h2>
 	    <h3 class="fs-subtitle">Conta de Origem</h3>
-	    <select required class="form-control" name="userAcc" ng-model="userAcc" id="userAcc" ng-options="x.nome for x in $root.contas" ng-init="userAcc = contas[0]">
+	    <select required class="form-control" name="userAcc" ng-model="$root.userAcc" id="userAcc" ng-options="x.nome for x in $root.contas">
 		</select>
 		<h3 class="fs-subtitle">Conta de Destino</h3>
-	    <select required class="form-control" name="destAcc" ng-model="destAcc" id="destAcc" ng-options="x.nome for x in $root.contas" ng-init="destAcc = contas[0]">
+	    <select required class="form-control" name="destAcc" ng-model="$root.destAcc" id="destAcc" ng-options="x.nome for x in $root.contas">
 		</select>
 	    <input type="button" name="next" class="next action-button" value="Próximo" />
 	  </fieldset>

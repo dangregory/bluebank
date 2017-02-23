@@ -1,5 +1,4 @@
 <section class="container-fluid content">
-
     <div class="row">
        <!--visao geral-->
         <article class="col-lg-12 col-sm-12 col-xs-12">
@@ -14,48 +13,78 @@
             </span>
             <span>Bem vindo, {{$root.selecionado.titular}}.</span>
           </header>
-
-
-                          <div class="col-lg-3 col-xs-6">
-                            <div class="rad-info-box rad-txt-success">
-                            <span class="pull-left" style="position: absolute;bottom: 30px">
-                              <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/52864-200.png" style="width:20%;"></i>
-                            </span>                             
-                              <span class="heading">Conta Corrente</span>
-                              <span class="value {{$root.selecionado.saldo > 0 ? 'text-success' : 'text-danger'}}"><span>{{$root.selecionado.saldo | currency:'R$' }}</span></span>
-                            </div>
-                          </div>
-                          <div class="col-lg-3 col-xs-6">
-                            <div class="rad-info-box rad-txt-primary">
-                              <span class="pull-left" style="position: absolute;bottom: 25px;">
-                              <img src="https://cdn1.iconfinder.com/data/icons/unigrid-finance-vol-3/60/014_money_limit_settings_options_cash_finance-512.png" style="width:17%;"></i>
-                            </span>
-                              <span class="heading">Limite</span>
-                              <span class="value {{$root.selecionado.limite > 0 ? 'text-success' : 'text-danger'}}"><span>{{$root.selecionado.limite | currency:'R$' }}</span></span>
-                            </div>
-                          </div>
-                          <div class="col-lg-3 col-xs-6">
-                            <div class="rad-info-box rad-txt-danger">
-                              <span class="pull-left" style="position: absolute;bottom:25px;">
-                              <img src="http://www.finance-ligne.com/wp-content/uploads/2016/05/money_box-512.png" style="width:17%;"></i>
-                            </span>
-                              <span class="heading {{$root.selecionado.poupan > 0 ? 'text-success' : 'text-danger'}}">Conta Poupança</span>
-                              <span class="value"><span>{{$root.selecionado.poupan | currency:'R$' }}</span></span>
-                            </div>
-                          </div>
-                          <div class="col-lg-3 col-xs-6">
-                            <div class="rad-info-box">
-                              <span class="pull-left" style="position: absolute;bottom: 25px;">
-                              <img src="http://pt.seaicons.com/wp-content/uploads/2015/06/Finance-Money-Bag-icon.png" style="width:17%;"></i>
-                            </span>
-                              <span class="heading {{$root.selecionado.saldo + $root.selecionado.limite + $root.selecionado.poupan > 0 ? 'text-success' : 'text-danger'}}">Total</span>
-                              <span class="value"><span>{{$root.selecionado.saldo + $root.selecionado.limite + $root.selecionado.poupan | currency:'R$' }}</span></span>
-                            </div>
-                          </div>
-                        </div>
-
+          <div class="row">
+            <div class="col-lg-3 col-xs-6">
+              <div class="rad-info-box rad-txt-success">
+                <span class="pull-left" style="position: absolute;bottom: 30px">
+                  <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/52864-200.png" style="width:20%;">
+                </span>                             
+                <span class="heading">Conta Corrente</span>
+                <span class="value {{$root.selecionado.saldo > 0 ? 'text-success' : 'text-danger'}}">
+                  <span>{{$root.selecionado.saldo | currency:'R$' }}
+                  </span>
+                </span>
+              </div>
+            </div>
+            <div class="col-lg-3 col-xs-6">
+              <div class="rad-info-box rad-txt-primary">
+                <span class="pull-left" style="position: absolute;bottom: 25px;">
+                <img src="https://cdn1.iconfinder.com/data/icons/unigrid-finance-vol-3/60/014_money_limit_settings_options_cash_finance-512.png" style="width:17%;">
+              </span>
+                <span class="heading">Limite</span>
+                <span class="value {{$root.selecionado.limite > 0 ? 'text-success' : 'text-danger'}}"><span>{{$root.selecionado.limite | currency:'R$' }}</span></span>
+              </div>
+            </div>
+            <div class="col-lg-3 col-xs-6">
+              <div class="rad-info-box rad-txt-danger">
+                <span class="pull-left" style="position: absolute;bottom:25px;">
+                <img src="http://www.finance-ligne.com/wp-content/uploads/2016/05/money_box-512.png" style="width:17%;">
+              </span>
+                <span class="heading {{$root.selecionado.poupan > 0 ? 'text-success' : 'text-danger'}}">Conta Poupança</span>
+                <span class="value"><span>{{$root.selecionado.poupan | currency:'R$' }}</span></span>
+              </div>
+            </div>
+            <div class="col-lg-3 col-xs-6">
+              <div class="rad-info-box">
+                <span class="pull-left" style="position: absolute;bottom: 25px;">
+                <img src="http://pt.seaicons.com/wp-content/uploads/2015/06/Finance-Money-Bag-icon.png" style="width:17%;">
+              </span>
+                <span class="heading {{$root.selecionado.saldo + $root.selecionado.limite + $root.selecionado.poupan > 0 ? 'text-success' : 'text-danger'}}">Total</span>
+                <span class="value"><span>{{$root.selecionado.saldo + $root.selecionado.limite + $root.selecionado.poupan | currency:'R$' }}</span></span>
+              </div>
+            </div>
+          </div>
         </article>
     </div>
+</section>
+
+<section class="container-fluid content">
+  <div class="row">
+    <div class="col-md-12 col-xs-12" style="margin-top:20px;"> 
+  <table class="table table-bordered table-hover table-striped table-foldersystem">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Favorecido</th>
+        <th>Conta Origem</th>
+        <th>Conta Destino</th>
+        <th>Tipo</th>
+        <th>Valor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="x in extrato">
+        <td><i class="glyphicon glyphicon-folder-open"></i></td>
+        <td>{{x.usuario}}</td>
+        <td>{{x.origem}}</td>
+        <td>{{x.destino}}</td>
+        <td>{{x.tipo}}</td>
+        <td>{{x.valor | currency:'R$' }}</td>
+      </tr>
+    </tbody>
+    </table>
+</div>
+  </div>
 </section>
 
 <section class="container-fluid">
