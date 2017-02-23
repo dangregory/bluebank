@@ -1,8 +1,16 @@
 /*custom font*/
-@import url(http://fonts.googleapis.com/css?family=Montserrat);
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
 
 body {
   font-family: montserrat, arial, verdana;
+background: rgba(255,255,255,1);
+background: -moz-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(47%, rgba(246,246,246,1)), color-stop(100%, rgba(237,237,237,1)));
+background: -webkit-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+background: -o-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+background: -ms-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=1 );
 }
 
 .menu {
@@ -37,11 +45,11 @@ body {
   padding: 0;
   border: 0;
 }
+
 html,
 body {
   width: 100%;
   height: 100%;
-  background: url("https://www.toptal.com/designers/subtlepatterns/patterns/concrete_seamless.png") repeat fixed;
   font-family: 'Open Sans', sans-serif;
   font-weight: 200;
   position: absolute;
@@ -131,7 +139,7 @@ body {
   width: 100%;
   text-align: center;
   color: #fff;
-  background: #2ecc71;
+  background: #cc2e3a;
   padding: 10px 0;
   font-size: 12px;
   display: none;
@@ -147,7 +155,7 @@ body {
   position: absolute;
   pointer-events: none;
   border-color: rgba(46, 204, 113, 0);
-  border-bottom-color: #2ecc71;
+  border-bottom-color: #cc2e3a;
   border-width: 10px;
   margin-left: -10px;
 }
@@ -297,6 +305,16 @@ body {
   font-size: 10px;
 }
 
+.hidden{
+  display: none;
+}
 
+.alert-success{
+  margin-bottom: 0;
+}
+
+.alert-danger{
+  margin-bottom: 0;
+}
 
 

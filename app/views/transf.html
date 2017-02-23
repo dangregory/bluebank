@@ -1,3 +1,15 @@
+<div id="alert" class="alert alert-success alert-dismissable hidden" role="alert">
+	<button type="button" class="close" data-dismiss="alert" ng-click="fechaAlert()">×</button>
+	<strong>Feito!</strong> A transferência foi realizada com sucesso.
+</div>
+<div id="alertSaldo" class="alert alert-danger alert-dismissable hidden" role="alert">
+	<button type="button" class="close" data-dismiss="alert" ng-click="fechaAlertTransf('alertSaldo')">×</button>
+	<strong>Negado!</strong> Saldo insuficiente.
+</div>
+<div id="alertConta" class="alert alert-danger alert-dismissable hidden" role="alert">
+	<button type="button" class="close" data-dismiss="alert" ng-click="fechaAlertTransf('alertConta')">×</button>
+	<strong>Negado!</strong> Transferência para contas do mesmo tipo.
+</div>
 <section>
 	<form id="msform" ng-submit="transf($root.selecionado, destUser, transValue, userAcc, destAcc);">
 	  <!-- progressbar -->

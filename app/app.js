@@ -41,28 +41,14 @@ app.config(function($routeProvider, $locationProvider)
 
 app.factory('users', function($http){
 
+  console.log("chamei users");
 
    var dados = {};
    dados.dado = [];
 
-
-   /*
-   $http({
-        method: 'GET',
-        url: 'http://private-915401-bluebank.apiary-mock.com/users'
-      }).then(function successCallback(response) {
-         for (var i = 0; i < response.data.length; i++) {
-            dados.dado.push(response.data[i]);
-         }
-         //logado = users.dados[0];
-        }, function errorCallback(response) {
-          // called asynchronously if an error occurs
-          // or server returns response with an error status.
-        });*/
-
         $http({
         method: 'GET',
-        url: 'http://localhost:3000/users'
+        url: 'https://fake-restful.herokuapp.com/users'
       }).then(function successCallback(response) {
          console.log(response);
          for (var i = 0; i < response.data.length; i++) {
@@ -86,7 +72,7 @@ app.factory('accounts', function($http){
 
    $http({
         method: 'GET',
-        url: 'http://localhost:3000/contas'
+        url: 'https://fake-restful.herokuapp.com/contas'
       }).then(function successCallback(response) {
          for (var i = 0; i < response.data.length; i++) {
             contas.dado.push(response.data[i]);

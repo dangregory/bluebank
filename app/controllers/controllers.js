@@ -20,18 +20,14 @@ app.controller('LoginCtrl', function($rootScope, $location, $scope, users)
 
 	$(".login").submit(function(){
 
-		
-		console.log($rootScope.dados);
 		$scope.findID = function(loginID) {
+			$rootScope.loginID = loginID;
 		    for (var i = 0; i < $rootScope.dados.length; i++) {
-		        if ($rootScope.dados[i].id === loginID){
+		        if ($rootScope.dados[i].id == loginID){
 		            $rootScope.selecionado = $rootScope.dados[i]; // Return as soon as the object is found
-		        	console.log($rootScope.selecionado);
 		        	$scope.submitQuery();
 		        }
 		    }
-		    console.log("deu ruim");
-		    return null; // The object was not found
 		}
 
 
@@ -39,15 +35,13 @@ app.controller('LoginCtrl', function($rootScope, $location, $scope, users)
 	  $(this).find(".submit i").removeAttr('class').addClass("fa fa-check").css({"color":"#fff"});
 	  $(".submit").css({"background":"#2ecc71", "border-color":"#2ecc71"});
 	  $(".feedback").show().animate({"opacity":"1", "bottom":"-80px"}, 400);
-	  $("input").css({"border-color":"#2ecc71"});
+	  $("#input-id").css({"border-color":"#cc2e3a"});
 	  return false;
 	})
 
 	$scope.submitQuery = function () {
 		$location.path('/main');
 	};
-
-
 });
  
 app.controller('ContactCtrl', function($rootScope, $location)
@@ -63,6 +57,34 @@ app.controller('AboutCtrl', function($rootScope, $location)
 app.controller('MainCtrl', function($rootScope, $location, $scope, $http, users)
 {
    $rootScope.activetab = $location.path();    
+
+   var dados = {};
+   dados.dado = [];
+
+   $http({
+        method: 'GET',
+		url: 'https://fake-restful.herokuapp.com/users'
+	}).then(function successCallback(response) {
+			for (var i = 0; i < response.data.length; i++) {
+			    dados.dado.push(response.data[i]);
+			}
+			$scope.checaSelecionado();
+		}, function errorCallback(response) {
+	});
+   $rootScope.dados = dados.dado;
+
+   $scope.checaSelecionado = function() {
+
+   console.log("checa selecionado");
+	   	for (var i = 0; i < $rootScope.dados.length; i++) {
+		   console.log($rootScope.loginID);
+		   console.log($rootScope.dados[i].id)
+	        if ($rootScope.dados[i].id == $rootScope.loginID){
+	            $rootScope.selecionado = $rootScope.dados[i]; // Return as soon as the object is found
+	            console.log("selecionado");
+	        }
+	    }
+	}
 
     $scope.hasChanged = function() {
 		$("#agenciaDestino").val("");
@@ -80,7 +102,7 @@ app.controller('MainCtrl', function($rootScope, $location, $scope, $http, users)
     };
 });
 
-app.controller('TransfCtrl', function($rootScope, $location, $scope, $http, accounts)
+app.controller('TransfCtrl', function($rootScope, $location, $scope, $http, accounts, users)
 {
    	$rootScope.activetab = $location.path();
 
@@ -164,53 +186,187 @@ app.controller('TransfCtrl', function($rootScope, $location, $scope, $http, acco
 		});
 	});
 
+	$scope.fechaAlert = function(){
+		$("#alert").addClass("hidden");
+		$location.path('/main');
+	}
 
+	$scope.fechaAlertTransf = function(id){
+		$("#"+id).addClass("hidden");
+	}
 
 	$scope.transf = function(user, dest, valor, contaUser, contaDest){
-		console.log(user);
-		console.log(dest);
-		console.log(valor);
-		console.log(contaUser);
-		console.log(contaDest);
-		
-		console.log(user);
-		console.log(dest);
+
+		//TRANSF PARA MESMO USUÁRIO
 		if (user.titular == dest.titular) {
 			if (contaUser.tipo == contaDest.tipo) {
-				console.log("mesmo tipo de conta");
+					$("#alertConta").removeClass("hidden");
 			}
 			else{
-				console.log("transf de "+ contaUser.nome + " para " + contaDest.nome);
-				if (valor > user.saldo + user.limite) {
-					console.log("vc n tem grana");
-				}
-				else{
-					if (valor < user.saldo) {
-						console.log("vc vai usar seu saldo");
+				if (contaUser.tipo == "corrente") {
+					if (valor > user.saldo + user.limite) {
+						$("#alertSaldo").removeClass("hidden");
 					}
 					else{
-						console.log("vc vai usar do limite");
+						if (valor < user.saldo) {
+							$scope.update(user, dest, valor, contaUser, contaDest, "dest", "");
+							$scope.update(user, dest, valor, contaUser, contaDest, "user", "saldo");
+						}
+						else{
+							$scope.update(user, dest, valor, contaUser, contaDest, "dest", "");
+							$scope.update(user, dest, valor, contaUser, contaDest, "user", "limite");
+						}
+					}
+				}
+				else{
+					if (valor > user.poupan) {
+						$("#alertSaldo").removeClass("hidden");
+					}
+					else{
+							$scope.update(user, dest, valor, contaUser, contaDest, "dest", "");
+							$scope.update(user, dest, valor, contaUser, contaDest, "user", "poupan");
 					}
 				}
 			}
 
 		}
+		//TRANSF PARA USUÁRIO DIFERENTE
 		else{
-			if (valor > user.saldo + user.limite) {
-				console.log("vc n tem grana");
-			}
-			else{
-				if (valor < user.saldo) {
-					console.log("vc vai usar seu saldo");
+			if (contaUser.tipo == "corrente") {
+				if (valor > user.saldo + user.limite) {
+					$("#alertSaldo").removeClass("hidden");
 				}
 				else{
-					console.log("vc vai usar do limite");
+					if (valor < user.saldo) {
+						$scope.update(user, dest, valor, contaUser, contaDest, "dest", "");
+						$scope.update(user, dest, valor, contaUser, contaDest, "user", "saldo");
+					}
+					else{
+						$scope.update(user, dest, valor, contaUser, contaDest, "dest", "");
+						$scope.update(user, dest, valor, contaUser, contaDest, "user", "limite");
+					}
 				}
 			}
+			else{
+				if (valor > user.poupan) {
+					$("#alertSaldo").removeClass("hidden");
+				}
+				else{
+						$scope.update(user, dest, valor, contaUser, contaDest, "dest", "");
+						$scope.update(user, dest, valor, contaUser, contaDest, "user", "poupan");
+				}
+			}
+			
 
 		}
 		
 	};
+
+	$scope.update = function(user, dest, valor, contaUser, contaDest, tipo, operacao){
+
+		if(tipo == "user"){
+			//Operações na conta do usuário
+			if(operacao == "saldo"){
+				$http({
+				  	url: 'http://fake-restful.herokuapp.com/users/' + user.id,
+				  	method: 'PATCH',
+				  	headers: {
+		    			'Content-Type': 'application/json'
+		    		},
+				  	data: {
+				  		saldo: user.saldo - valor
+				  	}
+				  		
+				}).success(function(response) {
+				      	$("#alert").removeClass("hidden");
+				  	}).
+				  error(function(response) {
+				  console.log(response);
+				  return false;
+				});
+			}
+			else if(operacao == "limite"){
+				$http({
+				  	url: 'http://fake-restful.herokuapp.com/users/' + user.id,
+				  	method: 'PATCH',
+				  	headers: {
+		    			'Content-Type': 'application/json'
+		    		},
+				  	data: {
+				  		saldo: 0,
+				  		limite: user.limite - valor
+				  	}
+				  		
+				}).success(function(response) {
+				      	$("#alert").removeClass("hidden");
+				  	}).
+				  error(function(response) {
+				  console.log(response);
+				  return false;
+				});
+			}
+			else if(operacao == "poupan"){
+				$http({
+				  	url: 'http://fake-restful.herokuapp.com/users/' + user.id,
+				  	method: 'PATCH',
+				  	headers: {
+		    			'Content-Type': 'application/json'
+		    		},
+				  	data: {
+				  		poupan: dest.poupan - valor
+				  	}
+				  		
+				}).success(function(response) {
+				      	$("#alert").removeClass("hidden");
+				  	}).
+				  error(function(response) {
+				  console.log(response);
+				  return false;
+				});
+			}
+		}
+		else{
+			//Operações na conta do favorecido
+			if (contaDest.tipo == "corrente") {
+				$http({
+				  	url: 'http://fake-restful.herokuapp.com/users/' + dest.id,
+				  	method: 'PATCH',
+				  	headers: {
+		    			'Content-Type': 'application/json'
+		    		},
+				  	data: {
+				  		saldo: dest.saldo + valor
+				  	}
+				  		
+				}).success(function(response) {
+				      	$("#alert").removeClass("hidden");
+				  	}).
+				  error(function(response) {
+				  console.log(response);
+				  return false;
+				});
+			} 
+			else if(contaDest.tipo == "poupan"){
+				$http({
+				  	url: 'http://fake-restful.herokuapp.com/users/' + dest.id,
+				  	method: 'PATCH',
+				  	headers: {
+		    			'Content-Type': 'application/json'
+		    		},
+				  	data: {
+				  		poupan: dest.poupan + valor
+				  	}
+				  		
+				}).success(function(response) {
+				      	$("#alert").removeClass("hidden");
+				  	}).
+				  error(function(response) {
+				  console.log(response);
+				  return false;
+				});
+			}			
+		}
+	}
 
 
     $scope.hasChanged = function() {

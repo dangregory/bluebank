@@ -11,22 +11,22 @@
       <legend class="legend">Entrar</legend>
       
       <div class="input">
-        <input ng-model="id" type="text" placeholder="ID" required/>
+        <input id="input-id" ng-model="id" type="number" placeholder="ID" required/>
         <span><i class="fa fa-user-o"></i></span>
       </div>
       
       <div class="input">
-        <input ng-model="cpf" type="text" placeholder="CPF" ui-br-cpf-mask/>
+        <input ng-model="cpf" type="number" placeholder="CPF" ui-br-cpf-mask/>
         <span><i class="fa fa-id-card-o"></i></span>
       </div>
 
       <div class="input">
-        <input ng-model="agencia" type="text" placeholder="Agência" />
+        <input ng-model="agencia" type="number" placeholder="Agência" />
         <span><i class="fa fa-home"></i></span>
       </div>
 
       <div class="input">
-        <input type="text" placeholder="Conta" />
+        <input type="number" placeholder="Conta" />
         <span><i class="fa fa-envelope-o"></i></span>
       </div>
         
@@ -35,6 +35,6 @@
     </fieldset>
     
     <div class="feedback">
-      Logado com sucesso!
+      Usuário não encontrado!
     </div>
   </form>
