@@ -41,10 +41,12 @@ app.config(function($routeProvider, $locationProvider)
 
 app.factory('users', function($http){
 
+
    var dados = {};
    dados.dado = [];
 
 
+   /*
    $http({
         method: 'GET',
         url: 'http://private-915401-bluebank.apiary-mock.com/users'
@@ -56,6 +58,17 @@ app.factory('users', function($http){
         }, function errorCallback(response) {
           // called asynchronously if an error occurs
           // or server returns response with an error status.
+        });*/
+
+        $http({
+        method: 'GET',
+        url: 'http://localhost:3000/users'
+      }).then(function successCallback(response) {
+         console.log(response);
+         for (var i = 0; i < response.data.length; i++) {
+            dados.dado.push(response.data[i]);
+         }
+        }, function errorCallback(response) {
         });
 
 
@@ -73,7 +86,7 @@ app.factory('accounts', function($http){
 
    $http({
         method: 'GET',
-        url: 'http://private-915401-bluebank.apiary-mock.com/accountType'
+        url: 'http://localhost:3000/contas'
       }).then(function successCallback(response) {
          for (var i = 0; i < response.data.length; i++) {
             contas.dado.push(response.data[i]);

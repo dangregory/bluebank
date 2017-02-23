@@ -21,7 +21,7 @@ app.controller('LoginCtrl', function($rootScope, $location, $scope, users)
 	$(".login").submit(function(){
 
 		
-
+		console.log($rootScope.dados);
 		$scope.findID = function(loginID) {
 		    for (var i = 0; i < $rootScope.dados.length; i++) {
 		        if ($rootScope.dados[i].id === loginID){
@@ -30,6 +30,7 @@ app.controller('LoginCtrl', function($rootScope, $location, $scope, users)
 		        	$scope.submitQuery();
 		        }
 		    }
+		    console.log("deu ruim");
 		    return null; // The object was not found
 		}
 
