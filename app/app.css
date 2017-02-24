@@ -5,18 +5,36 @@
 
 body {
   font-family: montserrat, arial, verdana;
-  background: rgba(255,255,255,1);
-  background: -moz-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
-  background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(47%, rgba(246,246,246,1)), color-stop(100%, rgba(237,237,237,1)));
-  background: -webkit-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
-  background: -o-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
-  background: -ms-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
-  background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=1 );
   line-height: normal;
   font-size: 16px;
   overflow-Y: scroll;
   -webkit-font-smoothing: antialiased !important;
+}
+
+.background-login{
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: url("http://sf.co.ua/14/01/wallpaper-1873409.jpg") repeat;
+}
+
+.main-page{
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(255,255,255,1);
+background: -moz-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(47%, rgba(246,246,246,1)), color-stop(100%, rgba(237,237,237,1)));
+background: -webkit-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+background: -o-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+background: -ms-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=1 );
+margin-top: 44px;
 }
 
 .menu {
@@ -63,7 +81,6 @@ body {
 }
 .login {
   position: relative;
-  top: 40%;
   width: 350px;
   display: table;
   margin: 0px auto 0 auto;
@@ -78,6 +95,7 @@ body {
   padding: 15px;
   color: #fff;
   font-size: 20px;
+  font-family: montserrat;
 }
 .legend:after {
   content: "";
@@ -175,9 +193,11 @@ body {
     color:#444;
 }
 #header h1{
-	font-family: 'Slabo 27px';
-    font-size:42px;
-    color:#5A98CD;
+	
+  font-family: montserrat, arial, verdana;
+  font-weight: 700;
+  font-size:42px;
+  color:white;
 }
 #header h2{
 	font-weight:normal;
@@ -328,14 +348,6 @@ body {
   box-sizing: border-box;
 }
 
-body {
-  background: #f0f0f0;
-  line-height: normal;
-  font-size: 16px;
-  overflow-Y: scroll;
-  -webkit-font-smoothing: antialiased !important;
-}
-
 a, a:hover, a:visited, a:link, a:active {
   text-decoration: none;
 }
@@ -366,7 +378,7 @@ a:active {
   text-shadow: 1px 4px 6px #c6c6c6, 0 0 0 #000, 1px 4px 6px #c6c6c6;
 }
 .rad-page-title span {
-  font-size: 22px;
+  font-size: 30px;
   font-weight: 500;
   display: block;
 }
@@ -1728,3 +1740,108 @@ a:active {
   color: #fff !important;
 }
 
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700);
+
+a {
+  text-decoration: none;
+  color: #444;
+  font-weight: 300;
+}
+
+.background-contact {
+  position: fixed;
+  //top: 0;
+  right: 0;
+  left: 0;
+  //bottom: 0;
+  background: url("http://sf.co.ua/14/01/wallpaper-1873409.jpg");
+  overflow: scroll;
+  perspective: 1000px;
+}
+
+.container-contact {
+  width: 90%;
+  max-width: 500px;
+  margin: 150px auto;
+  transform: rotateX(20deg);
+}
+
+.outer {
+  font-weight: 100;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  text-shadow: 0px 2px 1px #aaa;
+  font-size: 2em;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.6);
+  padding: 40px;
+  box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.2);
+}
+.outer .outer-content {
+  z-index: 1;
+}
+.outer .outer-corner {
+  height: 40px;
+  width: 40px;
+  border-right: 5px solid rgba(255, 255, 255, 0.5);
+  border-top: 5px solid white;
+  position: absolute;
+  right: -30px;
+  top: -30px;
+}
+
+.main {
+  background: linear-gradient(to bottom, transparent, white 40px);
+  transform: translateY(-40px);
+  box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+.main p {
+  margin: 0px;
+  font-weight: 300;
+}
+.main p.st {
+  margin-top: 20px;
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+.main p.st:first-of-type {
+  margin-top: 0px;
+}
+.main .pd {
+  padding: 40px;
+}
+.main .map {
+  width: 200px;
+  height: 200px;
+  background: url("https://s32.postimg.org/rienefced/Ultra_Light_with_Labels_Snazzy_Maps_Free_Sty.png");
+  background-size: 220%;
+  -webkit-filter: contrast(100%);
+  position: absolute;
+  right: -20px;
+  top: 20px;
+  box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.2);
+}
+.main .img {
+  position: absolute;
+  bottom: 0;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  background: url(https://images.unsplash.com/photo-1452110040644-6751c0c95836?crop=entropy&dpr=2&fit=crop&fm=jpg&h=825&ixjsv=2.1.0&ixlib=rb-0.3.5&q=50&w=1450);
+  background-size: cover;
+  width: 100%;
+  height: 10px;
+}
+.main .main-outer {
+  height: 40px;
+  width: 40px;
+  border-left: 5px solid rgba(255, 255, 255, 0.5);
+  border-bottom: 5px solid white;
+  position: absolute;
+  left: -30px;
+  bottom: -30px;
+}
+
+.extrato{
+  font-size:26px;
+}
