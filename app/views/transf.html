@@ -1,4 +1,5 @@
-<div id="alert" class="alert alert-success alert-dismissable hidden" role="alert">
+<div>	
+	<div id="alert" class="alert alert-success alert-dismissable hidden" role="alert">
 	<button type="button" class="close" data-dismiss="alert" ng-click="fechaAlert()">×</button>
 	<strong>Feito!</strong> A transferência foi realizada com sucesso.
 </div>
@@ -10,50 +11,50 @@
 	<button type="button" class="close" data-dismiss="alert" ng-click="fechaAlertTransf('alertConta')">×</button>
 	<strong>Negado!</strong> Transferência para contas do mesmo tipo.
 </div>
-<section>
-	<form id="msform" ng-submit="transf($root.selecionado, destUser, transValue, userAcc, destAcc);">
-	  <!-- progressbar -->
-	  <ul id="progressbar">
-	    <li class="active">Contas</li>
-	    <li>Favorecido</li>
-	    <li>Valor</li>
-	  </ul>
-	  <!-- fieldsets -->
-	  <fieldset>
-	    <h2 class="fs-title">Informe os tipos de conta</h2>
-	    <h3 class="fs-subtitle">Conta de Origem</h3>
-	    <select required class="form-control" name="userAcc" ng-model="userAcc" id="userAcc" ng-options="x.nome for x in $root.contas" ng-init="userAcc = contas[0]">
-		</select>
-		<h3 class="fs-subtitle">Conta de Destino</h3>
-	    <select required class="form-control" name="destAcc" ng-model="destAcc" id="destAcc" ng-options="x.nome for x in $root.contas" ng-init="destAcc = contas[0]">
-		</select>
-	    <input type="button" name="next" class="next action-button" value="Próximo" />
-	  </fieldset>
-	  <fieldset>
-	    <h2 class="fs-title">Selecione o Favorecido</h2>
-	    <h3 class="fs-subtitle">Nome</h3>
-	    <select name="destUser" ng-model="destUser" ng-options="x.titular for x in $root.dados | filter: agenciaDestino | filter: contaDestino " id="destUser" class="form-control" ng-init="destUser = $root.dados[1]" ng-change="hasChanged();">
-	        <option value="">- Selecione um Favorecido -</option>
-	    </select>
-	    <h3 class="fs-subtitle">Agência</h3>
-	    <input type="text" class="form-control" ng-model="agenciaDestino" name="agenciaDestino" id="agenciaDestino" placeholder="{{destUser.agencia}}">
-		<h3 class="fs-subtitle">Conta</h3>
-	    <input type="text" class="form-control" ng-model="contaDestino" name="contaDestino" id="contaDestino" placeholder="{{destUser.conta}}">
-	    <input type="button" name="previous" class="previous action-button" value="Voltar" />
-	    <input type="button" name="next" class="next action-button" value="Próximo" />
-	  </fieldset>
-	  <fieldset>
-	    <h2 class="fs-title">Valores</h2>
-	    <h3 class="fs-subtitle">Valor a ser transferido</h3>
-	    <input required type="text" id="transValue" name="transValue" class="form-control" ng-model="transValue" ui-money-mask>
-	    <input type="button" name="previous" class="previous action-button" value="Voltar" />
-	    <input type="submit" name="submit" class="submit action-button" value="Transferir" />
-	  </fieldset>
-	</form>
-</section>
+<div class="main-page">
+	
+	<section>
+		<form id="msform" ng-submit="transf($root.selecionado, destUser, transValue, userAcc, destAcc);">
+		  <!-- progressbar -->
+		  <ul id="progressbar">
+		    <li class="active">Contas</li>
+		    <li>Favorecido</li>
+		    <li>Valor</li>
+		  </ul>
+		  <!-- fieldsets -->
+		  <fieldset>
+		    <h2 class="fs-title">Informe os tipos de conta</h2>
+		    <h3 class="fs-subtitle">Conta de Origem</h3>
+		    <select required class="form-control" name="userAcc" ng-model="$root.userAcc" id="userAcc" ng-options="x.nome for x in $root.contas">
+			</select>
+			<h3 class="fs-subtitle">Conta de Destino</h3>
+		    <select required class="form-control" name="destAcc" ng-model="$root.destAcc" id="destAcc" ng-options="x.nome for x in $root.contas">
+			</select>
+		    <input type="button" name="next" class="next action-button" value="Próximo" />
+		  </fieldset>
+		  <fieldset>
+		    <h2 class="fs-title">Selecione o Favorecido</h2>
+		    <h3 class="fs-subtitle">Nome</h3>
+		    <select name="destUser" ng-model="destUser" ng-options="x.titular for x in $root.dados | filter: agenciaDestino | filter: contaDestino " id="destUser" class="form-control" ng-init="destUser = $root.dados[1]" ng-change="hasChanged();">
+		        <option value="">- Selecione um Favorecido -</option>
+		    </select>
+		    <h3 class="fs-subtitle">Agência</h3>
+		    <input type="text" class="form-control" ng-model="agenciaDestino" name="agenciaDestino" id="agenciaDestino" placeholder="{{destUser.agencia}}">
+			<h3 class="fs-subtitle">Conta</h3>
+		    <input type="text" class="form-control" ng-model="contaDestino" name="contaDestino" id="contaDestino" placeholder="{{destUser.conta}}">
+		    <input type="button" name="previous" class="previous action-button" value="Voltar" />
+		    <input type="button" name="next" class="next action-button" value="Próximo" />
+		  </fieldset>
+		  <fieldset>
+		    <h2 class="fs-title">Valores</h2>
+		    <h3 class="fs-subtitle">Valor a ser transferido</h3>
+		    <input required type="text" id="transValue" name="transValue" class="form-control" ng-model="transValue" ui-money-mask>
+		    <input type="button" name="previous" class="previous action-button" value="Voltar" />
+		    <input id="transfButton" type="submit" name="submit" class="submit action-button" value="Transferir" />
+		  </fieldset>
+		</form>
+	</section>
+</div>
 
-<section class="container-fluid">
-    <div class="row">
-        <ng-include src="$root.layout[1].path"></ng-include>
-    </div>
-</section>
+
+</div>

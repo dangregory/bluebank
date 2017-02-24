@@ -1,3 +1,111 @@
-<div class="page-header">
-   <h1>Página Sobre!</h1>
+<div class="main-page" style="padding: 5px;overflow: auto">
+		
+	<h1 id="bluebank"><code>blue bank.</code></h1>
+
+	<h2 id="usando">Usando</h2>
+
+	<p>O projeto foi hospedado no Heroku, dessa forma, basta acessar <a href="https://blue-bank.herokuapp.com/"><code>https://blue-bank.herokuapp.com</code></a> para executá-lo.
+	Os dados são consumidos de uma API criada e hospedada também no Heroku. (<a href="https://fake-restfull.herokuapp.com/"><code>https://fake-restfull.herokuapp.com</code></a>)</p>
+
+	<h2 id="dev">Dev</h2>
+
+	<p>Para começar você só tem que clonar o repositório e instalar suas dependências:</p>
+
+	<h3 id="prerequisitos">Pre-requisitos</h3>
+
+	<p><code>Git</code> para clonar o repositório;
+	<code>Node.js</code> devido às ferramentas para inicializar e testar o projeto.
+	É necessário também o gerenciador de pacotes <code>npm</code>.</p>
+
+	<h3 id="clonar">Clonar</h3>
+
+	<p>Clone o repositório usando git:</p>
+
+	<pre><code>git clone https://github.com/dangregory/bluebank.git
+	cd bluebank
+	</code></pre>
+
+	<h3 id="instalarasdependncias">Instalar as Dependências</h3>
+
+	<p>Para instalar as dependências, o <code>npm</code> foi pré-configurado para rodar o bower automaticamente, dessa forma basta executar:</p>
+
+	<pre><code>npm install
+	</code></pre>
+
+	<p>Esse comando chamará também o <code>bower install</code>. A pasta <code>bower_components</code> que normalmente fica no root do projeto, é criada na pasta <code>app</code> para facilitar o "serve" pelo webserver.</p>
+
+	<h3 id="rodaraaplicao">Rodar a Aplicação</h3>
+
+	<p>Esse projeto já está pré-configurado com um webserver de desenvolvimento local. É uma ferramenta Noje.js chamada <a href="https://github.com/indexzero/http-server">http-server</a>. Você pode rodar o projeto com esse webserver rodando um:</p>
+
+	<pre><code>npm start
+	</code></pre>
+
+	<p>Agora basta ir para <a href="http://localhost:8000/index.html"><code>localhost:8000/index.html</code></a>.</p>
+
+	<h3 id="instruesparalogin">Instruções para Login</h3>
+
+	<p>Foi criada uma api e hospedada no Heroku (<a href="https://fake-restfull.herokuapp.com/"><code>https://fake-restfull.herokuapp.com</code></a>) para ser consumida pelo frontend. Dessa forma, para logar no sistema, é feita uma autenticação através do <code>id</code> do usuário. Portanto, é necessário utilizar um dos seguintes <code>id's</code>:</p>
+
+	<pre><code>Nome: João, ID: 1
+	Nome: Maria, ID: 2
+	Nome: José, ID: 3
+	Nome: Watson, ID: 4
+	Nome: Ana, ID: 5
+	</code></pre>
+
+	<p>Como a autenticação checa somente o <code>id</code>, os outros campos não foram marcados como <code>required</code>.   </p>
+
+	<h1 id="bluebankestamoscontratando">Blue Bank - Estamos contratando!</h1>
+
+	<p><strong>Blue Bank</strong> é uma instituição financeira fictícia cujas demandas de desenvolvimento de software têm aumentado muito nos últimos meses. Tentando manter-se sempre atualizada, busca novos desenvolvedores de software que sejam capazes de solucionar problemas de forma eficaz e elegante.</p>
+
+	<p>Como candidato, seu objetivo é desenvolver uma aplicação que seja capaz de demonstrar seus conhecimentos em desenvolvimento frontend e backend, ou seja, provar ser um legítimo desenvolvedor Fullstack.</p>
+
+	<p>Para isso será necessário criar uma aplicação que possibilite a transferência de fundos entre contas de dois correntistas.</p>
+
+	<h2 id="informaesimportantessobreonegcio">Informações importantes sobre o negócio</h2>
+
+	<p>Um correntista é identificado pelo seu id, CPF, número da conta corrente e código da agência.</p>
+
+	<p>As transferências devem ter controle transacional para evitar débitos e créditos inválidos.</p>
+
+	<p>A existência da conta de destino deve ser validada, assim como a existência de fundos suficientes para o valor a ser transferido.</p>
+
+	<h2 id="requisitostcnicos">Requisitos técnicos</h2>
+
+	<ul>
+	<li>Interface web.</li>
+
+	<li>Backend Java EE ou NodeJs.</li>
+
+	<li>Utilizar OOP.</li>
+
+	<li>Banco de dados relacional com ORM (Lembre-se que a legislação obriga os bancos a manter dados históricos por anos).</li>
+
+	<li>Instruções para deploy e execução.</li>
+
+	<li>Pequeno memorando com justificativa de decisões técnicas.</li>
+	</ul>
+
+	<h2 id="comodestacarse">Como destacar-se?</h2>
+
+	<ul>
+	<li>Aplicar SOLID.</li>
+
+	<li>Escrever testes unitários com boa cobertura.</li>
+
+	<li>Arquitetar com SPA + API.</li>
+
+	<li>Fazer o deploy da aplicação no seu ambiente de nuvem preferido (<a href="https://console.ng.bluemix.net/">IBM Bluemix</a>, AWS, Openshift, Heroku).</li>
+	</ul>
+
+	<h2 id="frameworkssobemvindos">Frameworks são bem vindos!</h2>
+
+	<p>Angular, jQuery, Bootstrap, Material, ModuleJs, Sequelize, Spring, Hibernate.</p>
+
+	<h2 id="comoenviarocdigoparaanlise">Como enviar o código para análise?</h2>
+
+	<p>O desenvolvedor deve criar um projeto no seu Git repo preferido (GitHub, BitBucket, etc). Lembre-se que ele será analisado por desenvolvedores, então não economize nos comentários de commit.</p>
+
 </div>
