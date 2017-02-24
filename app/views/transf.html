@@ -1,5 +1,5 @@
-
-<div id="alert" class="alert alert-success alert-dismissable hidden" role="alert">
+<div>	
+	<div id="alert" class="alert alert-success alert-dismissable hidden" role="alert">
 	<button type="button" class="close" data-dismiss="alert" ng-click="fechaAlert()">×</button>
 	<strong>Feito!</strong> A transferência foi realizada com sucesso.
 </div>
@@ -50,14 +50,11 @@
 		    <h3 class="fs-subtitle">Valor a ser transferido</h3>
 		    <input required type="text" id="transValue" name="transValue" class="form-control" ng-model="transValue" ui-money-mask>
 		    <input type="button" name="previous" class="previous action-button" value="Voltar" />
-		    <input type="submit" name="submit" class="submit action-button" value="Transferir" />
+		    <input id="transfButton" type="submit" name="submit" class="submit action-button" value="Transferir" />
 		  </fieldset>
 		</form>
 	</section>
+</div>
+
 
 </div>
-<section class="container-fluid">
-    <div class="row">
-        <ng-include src="$root.layout[1].path"></ng-include>
-    </div>
-</section>

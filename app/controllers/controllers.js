@@ -195,11 +195,16 @@ app.controller('TransfCtrl', function($rootScope, $location, $scope, $http, acco
 	$scope.fechaAlert = function(){
 		$("#alert").addClass("hidden");
 		$location.path('/main');
+		$("#transfButton").prop( "disabled", false );
+
 	}
 
 	$scope.fechaAlertTransf = function(id){
 		$("#"+id).addClass("hidden");
+		$("#transfButton").prop( "disabled", false );
+
 	}
+
 
 	$scope.transf = function(user, dest, valor, contaUser, contaDest){
 
@@ -207,11 +212,16 @@ app.controller('TransfCtrl', function($rootScope, $location, $scope, $http, acco
 		if (user.titular == dest.titular) {
 			if (contaUser.tipo == contaDest.tipo) {
 					$("#alertConta").removeClass("hidden");
+					
+					$("#transfButton").prop( "disabled", true );
+
 			}
 			else{
 				if (contaUser.tipo == "corrente") {
 					if (valor > user.saldo + user.limite) {
 						$("#alertSaldo").removeClass("hidden");
+						$("#transfButton").prop( "disabled", true );
+					
 					}
 					else{
 						if (valor < user.saldo) {
@@ -227,6 +237,8 @@ app.controller('TransfCtrl', function($rootScope, $location, $scope, $http, acco
 				else{
 					if (valor > user.poupan) {
 						$("#alertSaldo").removeClass("hidden");
+						$("#transfButton").prop( "disabled", true );
+					
 					}
 					else{
 							$scope.update(user, dest, valor, contaUser, contaDest, "dest", "");
@@ -241,6 +253,8 @@ app.controller('TransfCtrl', function($rootScope, $location, $scope, $http, acco
 			if (contaUser.tipo == "corrente") {
 				if (valor > user.saldo + user.limite) {
 					$("#alertSaldo").removeClass("hidden");
+						$("#transfButton").prop("disabled", true);
+					
 				}
 				else{
 					if (valor < user.saldo) {
@@ -256,6 +270,8 @@ app.controller('TransfCtrl', function($rootScope, $location, $scope, $http, acco
 			else{
 				if (valor > user.poupan) {
 					$("#alertSaldo").removeClass("hidden");
+					$("#transfButton").prop( "disabled", true );
+					
 				}
 				else{
 						$scope.update(user, dest, valor, contaUser, contaDest, "dest", "");
@@ -285,6 +301,9 @@ app.controller('TransfCtrl', function($rootScope, $location, $scope, $http, acco
 				  		
 				}).success(function(response) {
 				      	$("#alert").removeClass("hidden");
+				      	$("#transfButton").prop( "disabled", true );
+					
+
 				      	$scope.updateExtrato(dest, user, valor, contaUser, contaDest, "Débito", operacao);
 				  	}).
 				  error(function(response) {
@@ -306,6 +325,9 @@ app.controller('TransfCtrl', function($rootScope, $location, $scope, $http, acco
 				  		
 				}).success(function(response) {
 				      	$("#alert").removeClass("hidden");
+				      	$("#transfButton").prop( "disabled", true );
+					
+
 				      	$scope.updateExtrato(dest, user, valor, contaUser, contaDest, "Débito", operacao);
 				  	}).
 				  error(function(response) {
@@ -326,6 +348,9 @@ app.controller('TransfCtrl', function($rootScope, $location, $scope, $http, acco
 				  		
 				}).success(function(response) {
 				      	$("#alert").removeClass("hidden");
+				      	$("#transfButton").prop( "disabled", true );
+					
+
 				      	$scope.updateExtrato(dest, user, valor, contaUser, contaDest, "Débito", operacao);
 				  	}).
 				  error(function(response) {
@@ -349,6 +374,9 @@ app.controller('TransfCtrl', function($rootScope, $location, $scope, $http, acco
 				  		
 				}).success(function(response) {
 				      	$("#alert").removeClass("hidden");
+				      	$("#transfButton").prop( "disabled", true );
+					
+
 				      	$scope.updateExtrato(user, dest, valor, contaUser, contaDest, "Crédito", operacao);
 				  	}).
 				  error(function(response) {
@@ -369,6 +397,9 @@ app.controller('TransfCtrl', function($rootScope, $location, $scope, $http, acco
 				  		
 				}).success(function(response) {
 				      	$("#alert").removeClass("hidden");
+				      	$("#transfButton").prop( "disabled", true );
+					
+
 				      	$scope.updateExtrato(user, dest, valor, contaUser, contaDest, "Crédito", operacao);
 				  	}).
 				  error(function(response) {

@@ -75,7 +75,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="x in extrato">
+          <tr ng-repeat="x in extrato" ng-class=" x.tipo === 'Crédito' ? 'red' : 'green'">
             <td class="text-center" >
               <img ng-if="x.tipo === 'Crédito'" style="width:30px;" src="https://d30y9cdsu7xlg0.cloudfront.net/png/3685-200.png">
               <img ng-if="x.tipo === 'Débito'" style="width:30px;" src="https://d30y9cdsu7xlg0.cloudfront.net/png/4889-200.png">
@@ -90,11 +90,5 @@
         </table>
     </div>
     </div>
-  </section>
-
-  <section class="container-fluid">
-      <div class="row">
-          <ng-include src="$root.layout[1].path"></ng-include>
-      </div>
   </section>
 </div>
