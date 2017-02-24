@@ -48,11 +48,11 @@ Agora basta ir para [`localhost:8000/index.html`][local-app-url].
 Foi criada uma api através do [Apiary][apiary] para ser consumida pelo frontend. Dessa forma, para logar no sistema, é feita uma autenticação através do `id` do usuário. Portanto, é necessário utilizar um dos seguintes `id's`:
 
 ```
-Nome: João, ID: 123456
-Nome: Maria, ID: 123457
-Nome: José, ID: 123458
-Nome: Watson, ID: 123459
-Nome: Ana, ID: 123450
+Nome: João, ID: 1
+Nome: Maria, ID: 2
+Nome: José, ID: 3
+Nome: Watson, ID: 4
+Nome: Ana, ID: 5
 ```
 Como a autenticação checa somente o `id`, os outros campos não foram marcados como `required`.   
 
